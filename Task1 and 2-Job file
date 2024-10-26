@@ -1,0 +1,27 @@
+import java.util.Comparator;
+
+public class Job implements Comparable<Job>{
+    int id;
+    int processingTime;
+    int priorityLevel;
+    int arrivalTime;
+
+    public Job(int id, int processingTime){
+        this.id = id;
+        this.processingTime = processingTime;
+    }
+
+    public Job(int id, int processingTime, int priorityLevel){
+        this.id = id;
+        this.processingTime = processingTime;
+        this.priorityLevel = priorityLevel;
+    }
+
+    public int getProcessingTime(){
+        return processingTime;
+    }
+
+    public int compareTo(Job other) {
+        return Integer.compare(this.processingTime, other.processingTime);
+    }
+}
