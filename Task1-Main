@@ -1,0 +1,39 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        MinPriorityQueue<Job> pq = new MinPriorityQueue<>(10); // Initialize with small size for resizing
+        try (Scanner scan = new Scanner(new File("task1-input.txt"))) {
+            while (scan.hasNextLine()) {
+                int id = scan.nextInt();
+                int processingTime = scan.nextInt();
+                Job job = new Job(id, processingTime);
+                pq.insert(job);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Input file not found.");
+            return;
+        }
+
+        int currentTime = 0;
+        double totalCompletionTime = 0;
+        System.out.print("Execution Order: ");
+        boolean firstJob = true;
+
+        int jobCount = pq.size();
+        while (!pq.isEmpty()) {
+            Job job = pq.delMin();
+            currentTime += job.getProcessingTime();
+            totalCompletionTime += currentTime;
+
+            if (!firstJob) System.out.print(", ");
+            System.out.print(job.id);
+            firstJob = false;
+        }
+
+        double averageCompletion = totalCompletionTime / jobCount;
+        System.out.println("\nAverage completion time: " + averageCompletion);
+    }
+}
