@@ -1,0 +1,49 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Task3Scheduler {
+
+    public static void main(String[] args) {
+        MinPriorityQueue<JobTsk3> jobQueue = new MinPriorityQueue<>();
+
+        try {
+            Scanner scanner = new Scanner(new File("task3-input.txt"));
+            int currentTime = 0;
+            int totalCompletionTime = 0;
+            int jobCount = 0;
+
+            System.out.print("Task 3 Execution order: ");
+            while (scanner.hasNext()) {
+                int jobId = scanner.nextInt();
+                int processingTime = scanner.nextInt();
+                int arrivalTime = scanner.nextInt();
+
+                // Process jobs in queue if they have arrived
+                while (currentTime < arrivalTime && !jobQueue.isEmpty()) {
+                    JobTsk3 job = jobQueue.delMin();
+                    currentTime += job.processingTime;
+                    totalCompletionTime += currentTime;
+                    jobCount++;
+                    System.out.print(job.jobId + " ");
+                }
+
+                currentTime = Math.max(currentTime, arrivalTime);
+                jobQueue.insert(new JobTsk3(jobId, processingTime, arrivalTime));
+            }
+
+            // Process remaining jobs
+            while (!jobQueue.isEmpty()) {
+                JobTsk3 job = jobQueue.delMin();
+                currentTime += job.processingTime;
+                totalCompletionTime += currentTime;
+                jobCount++;
+                System.out.print(job.jobId + " ");
+            }
+
+            System.out.println("\nTask 3 Average completion time: " + (double) totalCompletionTime / jobCount);
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Input file not found.");
+        }
+    }
