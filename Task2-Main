@@ -8,7 +8,7 @@ public class Task2Scheduler {
         MinPriorityQueue<JobTsk2> jobQueue = new MinPriorityQueue<>();
 
         try {
-            Scanner scanner = new Scanner(new File("task2-input.txt"));
+            Scanner scanner = new Scanner(new File("/Users/rhiltz/IdeaProjects/Week8/Tasks/task2-input.txt"));
             while (scanner.hasNext()) {
                 int jobId = scanner.nextInt();
                 int processingTime = scanner.nextInt();
@@ -25,7 +25,7 @@ public class Task2Scheduler {
         int totalCompletionTime = 0;
         int jobCount = jobQueue.size();
 
-        System.out.print("Task 2 Execution order: ");
+        System.out.print("Execution order: ");
         while (!jobQueue.isEmpty()) {
             JobTsk2 job = jobQueue.delMin();
             currentTime += job.processingTime;
@@ -33,6 +33,6 @@ public class Task2Scheduler {
             System.out.print(job.jobId + " ");
         }
 
-        System.out.println("\nTask 2 Average completion time: " + (double) totalCompletionTime / jobCount);
+        System.out.println("\nAverage completion time: " + (double) totalCompletionTime / jobCount);
     }
 }
