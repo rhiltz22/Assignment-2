@@ -8,12 +8,12 @@ public class Task3Scheduler {
         MinPriorityQueue<JobTsk3> jobQueue = new MinPriorityQueue<>();
 
         try {
-            Scanner scanner = new Scanner(new File("task3-input.txt"));
+            Scanner scanner = new Scanner(new File("/Users/rhiltz/IdeaProjects/Week8/Tasks/task3-input.txt"));
             int currentTime = 0;
             int totalCompletionTime = 0;
             int jobCount = 0;
 
-            System.out.print("Task 3 Execution order: ");
+            System.out.print("Execution order: ");
             while (scanner.hasNext()) {
                 int jobId = scanner.nextInt();
                 int processingTime = scanner.nextInt();
@@ -41,7 +41,7 @@ public class Task3Scheduler {
                 System.out.print(job.jobId + " ");
             }
 
-            System.out.println("\nTask 3 Average completion time: " + (double) totalCompletionTime / jobCount);
+            System.out.println("\nAverage completion time: " + (double) totalCompletionTime / jobCount);
             scanner.close();
         } catch (FileNotFoundException e) {
             System.out.println("Input file not found.");
