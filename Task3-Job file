@@ -1,0 +1,15 @@
+class JobTsk3 implements Comparable<JobTsk3> {
+    int jobId;
+    int processingTime;
+    int arrivalTime;
+
+    public JobTsk3(int jobId, int processingTime, int arrivalTime) {
+        this.jobId = jobId;
+        this.processingTime = processingTime;
+        this.arrivalTime = arrivalTime;
+    }
+
+    public int compareTo(JobTsk3 other) {
+        return Integer.compare(this.processingTime, other.processingTime); // Shorter processing time
+    }
+}
