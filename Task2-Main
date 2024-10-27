@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Task1Scheduler {
+public class Task2Scheduler {
 
     public static void main(String[] args) {
         MinPriorityQueue<JobTsk2> jobQueue = new MinPriorityQueue<>();
