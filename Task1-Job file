@@ -1,0 +1,16 @@
+import java.util.PriorityQueue;
+
+class JobTsk1 implements Comparable<JobTsk1> {
+        int jobId;
+        int processingTime;
+
+        JobTsk1(int jobId, int processingTime) {
+            this.jobId = jobId;
+            this.processingTime = processingTime;
+        }
+
+        public int compareTo(JobTsk1 other) {
+            return Integer.compare(this.processingTime, other.processingTime);
+        }
+    }
+
